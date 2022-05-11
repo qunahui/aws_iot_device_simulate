@@ -1,7 +1,9 @@
-var awsIot = require('aws-iot-device-sdk');
-require('dotenv').config();
 const { DeviceModel } = require('./model/device');
+const fields = require('./fields');
+var awsIot = require('aws-iot-device-sdk');
+require('dotenv').config({ path: `.env.${process.env.DEVICE_TYPE}` });
 
+var deviceType = process.env.DEVICE_TYPE;
 var clientId = process.env.CLIENT_ID;
 
 const initDeviceData = {
@@ -50,44 +52,7 @@ const initDeviceData = {
       ],
     },
   ],
-  fields: [
-    {
-      fkey: 'temperature',
-      readonly: true,
-      reportedVal: null,
-      desiredVal: null,
-    },
-    {
-      fkey: 'humidity',
-      readonly: true,
-      reportedVal: null,
-      desiredVal: null,
-    },
-    {
-      fkey: 'switch1',
-      readonly: false,
-      reportedVal: 'off',
-      desiredVal: null,
-    },
-    {
-      fkey: 'switch2',
-      readonly: false,
-      reportedVal: 'off',
-      desiredVal: null,
-    },
-    {
-      fkey: 'switch3',
-      readonly: false,
-      reportedVal: 'off',
-      desiredVal: null,
-    },
-    {
-      fkey: 'switch4',
-      readonly: false,
-      reportedVal: 'off',
-      desiredVal: null,
-    },
-  ],
+  fields: fields[deviceType],
 };
 
 var device = new DeviceModel(initDeviceData);

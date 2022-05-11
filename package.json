@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon index.js"
+    "dmt-ss-th": "cross-env DEVICE_TYPE=dmt-ss-th nodemon index.js",
+    "dmt-sw": "cross-env DEVICE_TYPE=dmt-sw nodemon index.js"
   },
-  "author": "lspham",
+  "author": "huy",
   "license": "ISC",
   "dependencies": {
     "aws-iot-device-sdk": "^2.2.11",
+    "cross-env": "^7.0.3",
     "dotenv": "^14.2.0",
     "lodash": "^4.17.21"
   },
